@@ -18,6 +18,8 @@ public class Application {
     DBWorker bean = context.getBean(DBWorker.class);
     int count = bean.count();
     log.info("Count is " + count);
+    String city = bean.wetCity(50);
+    log.info("Wet city: " + city);
     log.info("Hello from slf4j");
   }
 }

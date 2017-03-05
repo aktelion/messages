@@ -11,12 +11,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DBWorker {
-  @Autowired
   DataSource dbSource;
+  private JdbcTemplate template;
 
+  @Autowired
+  public DBWorker(DataSource dbSource) {
+    this.dbSource = dbSource;
+    this.template = new JdbcTemplate(dbSource);
+  }
   public int count() {
-    JdbcTemplate template = new JdbcTemplate(dbSource);
     int rowCount = template.queryForObject("select count(*) from cities", Integer.class);
     return rowCount;
+  }
+
+  public String wetCity(int humidity) {
+    template = new JdbcTemplate(dbSource);
+    String city = template.queryForObject("SELECT city FROM weather WHERE humidity=?",
+                                          new Object[]{humidity},
+                                          String.class);
+    return city;
   }
 }
