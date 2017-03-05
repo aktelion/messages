@@ -1,33 +1,40 @@
 package springdata.messages;
 
-import java.util.*;
-
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.slf4j.*;
 
 /**
- * Created by aktelion on 25/02/2017.
+ * Created by aktelion on 05/03/2017.
  */
-class MessageFactoryTest {
-  private static final Logger log = LoggerFactory.getLogger(MessageFactoryTest.class);
-  private MessageFactory factory = new MessageFactory();
+public class MessageFactoryTest {
+  private static Logger log = LoggerFactory.getLogger(MessageFactoryTest.class);
+
+  @BeforeClass
+  public static void initTests() {
+    log.info("Initializing tests");
+  }
+
+  @AfterClass
+  public static void tearDownTests() {
+    log.info("Tearing downs tests");
+  }
 
   @Before
-  void init() {
-    log.info("Why am I here?");
+  public void setUp()
+      throws Exception {
+    log.info("Init current test");
+  }
+
+  @After
+  public void tearDown()
+      throws Exception {
+    log.info("tearing test down");
   }
 
   @Test
-  void createMessage() {
-    List<Message> messages = new ArrayList<>(1000);
-    for (int i = 0; i < new Random().nextInt(1000); i++) {
-      messages.add(factory.createMessage());
-    }
-    for (Message message : messages) {
-      log.info(message.toString());
-    }
-
+  public void create()
+      throws Exception {
+    log.info("In test");
   }
 
 }
