@@ -1,6 +1,7 @@
 package springdata.messages;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 /**
  * Created by aktelion on 05/03/2017.
@@ -43,6 +44,46 @@ public class Message {
     this.code = code;
     this.source = source;
     this.cause = cause;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, time, regTime, isOnline, isService, alarmLevel, priority, messId, code, source, cause);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Message message = (Message) o;
+    return id == message.id &&
+        isOnline == message.isOnline &&
+        isService == message.isService &&
+        alarmLevel == message.alarmLevel &&
+        priority == message.priority &&
+        Objects.equals(time, message.time) &&
+        Objects.equals(regTime, message.regTime) &&
+        Objects.equals(messId, message.messId) &&
+        Objects.equals(code, message.code) &&
+        Objects.equals(source, message.source) &&
+        Objects.equals(cause, message.cause);
+  }
+
+  @Override
+  public String toString() {
+    return "Message{" +
+        "id=" + id +
+        ", time=" + time +
+        ", regTime=" + regTime +
+        ", isOnline=" + isOnline +
+        ", isService=" + isService +
+        ", alarmLevel=" + alarmLevel +
+        ", priority=" + priority +
+        ", messId='" + messId + '\'' +
+        ", code='" + code + '\'' +
+        ", source='" + source + '\'' +
+        ", cause='" + cause + '\'' +
+        '}';
   }
 
   public int getId() {
