@@ -15,11 +15,7 @@ public class Application {
 
   public static void main(String[] args) {
     ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-    DBWorker bean = context.getBean(DBWorker.class);
-    int count = bean.count();
-    log.info("Count is " + count);
-    String city = bean.wetCity(50);
-    log.info("Wet city: " + city);
+    JDBCMessagesDAO bean = context.getBean(JDBCMessagesDAO.class);
     log.info("Hello from slf4j");
   }
 }
